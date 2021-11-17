@@ -65,3 +65,89 @@ truffle migrate
 This will run all migrations located within your project's `migrations/` directory.
 
 You can find more details in the [official Truffle documentation](https://www.trufflesuite.com/docs/truffle/getting-started/running-migrations).
+
+## Testing the Smart Contacts locally
+
+To open the truffle development console:
+
+```bash
+truffle develop
+```
+
+Compile the contracts using this command:
+
+```bash
+truffle(develop)> compile
+```
+
+Migrate the compiled file to the chain using this command:
+
+```bash
+truffle(develop)> migrate
+```
+
+Store the instance of our contract in a variable:
+
+```bash
+truffle(develop)> let instance = await ImmutableTag.deployed()
+```
+
+We are using await because everything in blockchain is asynchronous and return a promise.
+
+The createResult will hold the transaction.
+
+```bash
+truffle(develop)> let createResult = await instance.createTag("https://github.com/Immutable-Tag/SmartContacts", "v1.0.0", "66190b9fc987cb12c3a302c84123122e68ef6450")
+undefined
+```
+
+```bash
+truffle(develop)> createResult
+{
+  tx: '0x8ca80cbfbbcce9a94bfe8c5bd4a4f9361e7976ac931f4484c121098495626d8a',
+  receipt: {
+    transactionHash: '0x8ca80cbfbbcce9a94bfe8c5bd4a4f9361e7976ac931f4484c121098495626d8a',
+    transactionIndex: 0,
+    blockHash: '0x033c4218c55535ba927a549dc949cc5bcfa9cba82a122bfa3c3626938983217f',
+    blockNumber: 5,
+    from: '0x45484af60e5509701935ca1adaf611b15ad90517',
+    to: '0x4e4ffa238f471e565e675b28e69b35682cd77107',
+    gasUsed: 171469,
+    cumulativeGasUsed: 171469,
+    contractAddress: null,
+    logs: [],
+    status: true,
+    logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    rawLogs: []
+  },
+  logs: []
+}
+```
+
+Read from the mapping to check the content
+
+```bash
+truffle(develop)> let getResult = await instance.getTag("https://github.com/Immutable-Tag/SmartContacts", "v1.0.0")
+undefined
+```
+
+```bash
+truffle(develop)> getResult
+[
+  'https://github.com/Immutable-Tag/SmartContacts',
+  'v1.0.0',
+  '66190b9fc987cb12c3a302c84123122e68ef6450',
+  repoURL: 'https://github.com/Immutable-Tag/SmartContacts',
+  tagID: 'v1.0.0',
+  commitHash: '66190b9fc987cb12c3a302c84123122e68ef6450'
+]
+```
+
+```bash
+truffle(develop)> getResult.commitHash
+'66190b9fc987cb12c3a302c84123122e68ef6450'
+truffle(develop)> getResult.tagID
+'v1.0.0'
+truffle(develop)> getResult.repoURL
+'https://github.com/Immutable-Tag/SmartContacts'
+```
