@@ -151,3 +151,30 @@ truffle(develop)> getResult.tagID
 truffle(develop)> getResult.repoURL
 'https://github.com/Immutable-Tag/SmartContacts'
 ```
+Checking if a Tag exists in the Smart Contract
+
+```bash
+truffle(develop)> let checkResult = await instance.checkTag("https://github.com/Immutable-Tag/SmartContacts", "v1.0.0")
+undefined
+truffle(develop)> checkResult
+true
+```
+To check the output if the tag id is changed for the createTag repoURL
+
+```bash
+truffle(develop)> let checkResult2 = await instance.checkTag("https://github.com/Immutable-Tag/SmartContacts", "v2.0.0")
+undefined
+truffle(develop)> checkResult2
+false
+```
+To check the output if the repoURL is changed for the createTag tag id
+
+```bash
+truffle(develop)> let checkResult3 = await instance.checkTag("https://github.com/Immutable-Tag/Client", "v1.0.0")
+undefined
+truffle(develop)> checkResult3
+false
+```
+
+
+
