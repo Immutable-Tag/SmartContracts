@@ -30,4 +30,10 @@ contract ImmutableTag {
         key = string(abi.encodePacked(string(abi.encodePacked(_repoURL, "_")), _tagID));
         return tags[key];
     }
+
+    function checkTag(string memory _repoURL, string memory _tagID) public view returns (bool) {
+        string memory key;
+        key = string(abi.encodePacked(string(abi.encodePacked(_repoURL, "_")), _tagID));
+        return bytes(tags[key].commitHash).length != 0;
+    }
 }
