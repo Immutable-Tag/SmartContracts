@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
 contract ImmutableTag {
-    uint public tagsNum;
+    
     struct Tag {
         string repoURL;
         string tagID;
@@ -31,7 +31,7 @@ contract ImmutableTag {
         key = string(abi.encodePacked(string(abi.encodePacked(_repoURL, "_")), _tagID));
         return tags[key];
     }
-    
+
     function checkTag(string memory _repoURL, string memory _tagID) public view returns (bool) {
         string memory key;
         key = string(abi.encodePacked(string(abi.encodePacked(_repoURL, "_")), _tagID));
