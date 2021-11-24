@@ -17,7 +17,7 @@ contract ImmutableTag {
     //     tagID: "v1.0.0"
     //     commitHash: "66190b9fc987cb12c3a302c84123122e68ef6450"
     // }
-    mapping(string => Tag) public tags;
+    mapping(string => Tag) private tags;
 
     function createTag(string memory _repoURL, string memory _tagID, string memory _commitHash) public {
         string memory key;
