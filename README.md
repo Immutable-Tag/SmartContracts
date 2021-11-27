@@ -31,6 +31,12 @@ Web3.js v1.5.3
 
 You can download the latest version of Ganache from [here](https://www.trufflesuite.com/ganache).
 
+### Ganache CLI
+
+```bash
+npm install ganache-cli@latest --global
+```
+
 ## Truffle project directory structure
 
 - `contracts/`: Directory for Solidity contracts
@@ -39,6 +45,12 @@ You can download the latest version of Ganache from [here](https://www.trufflesu
 - `truffle-config.js`: Truffle configuration file
 
 You can find more details in the [official Truffle documentation](https://www.trufflesuite.com/docs/truffle/getting-started/creating-a-project).
+
+## Running Ganache CLI to simulate Ethereum
+
+```bash
+ganache-cli --verbose --host 127.0.0.1 --port 8545 --accounts 10 --defaultBalanceEther 100 --gasLimit 6721975
+```
 
 ## Compiling Smart Contracts
 
